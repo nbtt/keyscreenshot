@@ -1,4 +1,5 @@
 # Keyscreenshot
+An application that take the screenshot only by keyboard.
 ## Quick start
 - Download `keyscreenshot.pyw` and `config.json`
 - Install python and make sure these packages are installed: `tkinter`, `PIL`, `pynput`, `pywin32`.
