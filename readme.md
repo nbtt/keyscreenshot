@@ -1,6 +1,7 @@
 # Keyscreenshot
 ## Quick start
 - Download `keyscreenshot.pyw` and `config.json`
+- Install python and make sure these packages are installed: `tkinter`, `PIL`, `pynput`, `pywin32`.
 - Open `keyscreenshot.pyw`.
 - To start taking screenshot. Either press `cmd + ctrl + shift + z` or `ctrl + alt + z`.
     - Use the key labeled near the line of the grid to jump to them.
