@@ -8,12 +8,15 @@ An application that take the screenshot only by keyboard.
     - Use the key labeled near the line of the grid to jump to them.
         - For example, by default, jump to the last horizontal line on the bottom by press `m`.
     - By default, press `h`, `j`, `k`, `l` to move to the left, down, up, right respectively.
-    - By default, press `x`, `c`, `v`, `b` to move to the top-left, bottom-left, bottom-right and top-right, respectively.
-    - Press number `1` to `9` to change the move distance.
 - We need to place 2 opposite points of a rectangle to specify the screenshot region. After placing 1 of these 2 points properly, press `Enter` to place the other one.
 - After place 2 points properly, press `Enter` to finish. The screenshot is saved on your clipboard.
-- To cancel to screenshot taking process, press `Esc`.
 - To exit the application, press `cmd + alt + w` or `ctrl + shift + alt + x`.
+## Additional features
+- When taking the screenshot:
+    - By default, press `x`, `c`, `v`, `b` to move to the top-left, bottom-left, bottom-right and top-right, respectively.
+    - Press number `1` to `9` to change the move distance.
+    - To cancel to screenshot taking process, press `Esc`.
+    - Press and hold `space` to hide the grid.
 ## Configuration
 Currently we can only change the keyboard binding for moves. Edit `config.json`:
 - `horiz.key` is the key to jump to 7 horizontal line of the grid.
