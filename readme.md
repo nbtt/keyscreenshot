@@ -9,6 +9,7 @@ An application that take the screenshot only by keyboard.
         - For example, by default, jump to the last horizontal line on the bottom by press `m`.
     - By default, press `h`, `j`, `k`, `l` to move to the left, down, up, right respectively.
     - By default, press `x`, `c`, `v`, `b` to move to the top-left, bottom-left, bottom-right and top-right, respectively.
+    - Press number `1` to `9` to change the move distance.
 - We need to place 2 opposite points of a rectangle to specify the screenshot region. After placing 1 of these 2 points properly, press `Enter` to place the other one.
 - After place 2 points properly, press `Enter` to finish. The screenshot is saved on your clipboard.
 - To cancel to screenshot taking process, press `Esc`.
