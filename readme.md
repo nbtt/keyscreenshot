@@ -22,7 +22,7 @@ Currently we can only change the keyboard binding for moves. Edit `config.json`:
     - `up`, `down`, `left`, `right` is the up, down, left, right move, respectively.
     - `t.left`, `b.left`, `b.right`, `t.right` is the top-left, bottom-left, bottom-right, top-right move, respectively.
 ## Notes
-    - `cmd` is the Windows key on Windows keyboard, the command key on Apple keyboard.
-    - We currently support exactly 7 horizontal line and 10 vertical line. If `config.json` is not properly edited, the program will crash, so do not remove any fields, just edit them.
-    - This is an beta version so there may be some errors. Also, there are no way to know if the program is opened properly. Users can check by press `cmd + ctrl + shift + z` or `ctrl + alt + z`.
-    - If there are an error, please close all apps that use python (likes IDE) and close python task on Windows Task Manager to forcibly exit the application.
+- `cmd` is the Windows key on Windows keyboard, the command key on Apple keyboard.
+- We currently support exactly 7 horizontal line and 10 vertical line. If `config.json` is not properly edited, the program will crash, so do not remove any fields, just edit them.
+- This is an beta version so there may be some errors. Also, there are no way to know if the program is opened properly. Users can check by press `cmd + ctrl + shift + z` or `ctrl + alt + z`.
+- If there are an error, please close all apps that use python (likes IDE) and close python task on Windows Task Manager to forcibly exit the application.
