@@ -1,0 +1,33 @@
+{
+    "horiz.key": [
+        "y",
+        "u",
+        "i",
+        "o",
+        "p",
+        "n",
+        "m"
+    ],
+    "vert.key": [
+        "q",
+        "w",
+        "e",
+        "r",
+        "t",
+        "a",
+        "s",
+        "d",
+        "f",
+        "g"
+    ],
+    "key": {
+        "h": "left",
+        "j": "down",
+        "k": "up",
+        "l": "right",
+        "x": "t.left",
+        "c": "b.left",
+        "v": "b.right",
+        "b": "t.right"
+    }
+}
