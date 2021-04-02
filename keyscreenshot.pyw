@@ -1,5 +1,5 @@
 import tkinter as tk
-import tkinter.ttk as ttk
+from tkinter import ttk
 import tkinter.messagebox
 from pynput import keyboard
 from PIL import Image, ImageTk, ImageGrab
@@ -7,6 +7,8 @@ import ctypes
 from io import BytesIO
 import win32clipboard
 import json
+from infi.systray import SysTrayIcon
+import queue
 
 class MainApplication:
     def __init__(self, master: tk.Tk):
@@ -95,6 +97,9 @@ class MainApplication:
         self.move_distance = 1
 
         self.bind_key()
+
+        self.quit_queue = queue.Queue(maxsize=1)
+        self.listen_quit_queue()
 
         self.master.withdraw() # Hide
 
@@ -287,32 +292,38 @@ class MainApplication:
     def size(self):
         return (self.width, self.height)
 
+    def quit(self):
+        self.quit_queue.put(1)
+
+    def listen_quit_queue(self):
+        if self.quit_queue.empty():
+            self.master.after(500, self.listen_quit_queue)
+        else:
+            self.master.destroy()
+
 class HotKey:
     def __init__(self, master, app):
         self.master = master
         self.app = app
         self.hotkey = keyboard.GlobalHotKeys({
-        '<cmd>+<alt>+w': self.on_closing,
-        '<ctrl>+<shift>+<alt>+x': self.on_closing,
-        '<ctrl>+<alt>+z': self.on_activate_app,
-        '<cmd>+<ctrl>+<shift>+z': self.on_activate_app
-        })
+            "<ctrl>+<shift>+;": self.on_activate_app})
 
     def on_activate_app(self):
         image = ImageGrab.grab((0, 0, *self.app.size()))
-        self.master.lift()
         self.app.set_image(image)
-        self.master.deiconify()
-        self.master.lift()
-        self.master.after(1, lambda: self.master.focus_force()) # Focus
-
-    def on_closing(self):
-        exit_app = tk.messagebox.askokcancel("Exit keyscreenshot?", "Do you want to exit keyscreenshot?", icon="warning")
-        if exit_app:
-            self.master.destroy()
+        self.master.deiconify() # show app
+        # Bring to top
+        self.master.attributes('-topmost',True)
+        self.master.after_idle(root.attributes,'-topmost',False)
+        self.master.after(1, self.master.focus_force) # Focus
     
     def start(self):
         self.hotkey.start()
+
+def quit_app(app):
+    def quit(sysTrayIcon):
+        app.quit()
+    return quit
 
 if __name__ == "__main__":
     # Enable Process DPI Awareness
@@ -320,13 +331,19 @@ if __name__ == "__main__":
         ctypes.windll.shcore.SetProcessDpiAwareness(2) # if your windows version >= 8.1
     except:
         ctypes.windll.user32.SetProcessDPIAware() # win 8.0 or less 
-    
+
     root = tk.Tk()
     root.title = "KeyScreenshot"
     root.overrideredirect(True) # Hide icon in taskbar
 
     main_app = MainApplication(root)
+
     # Wait for hotkey
     hotkey = HotKey(root, main_app)
     hotkey.start()
+
+    # Sytem tray icon
+    sysTrayIcon = SysTrayIcon("icon.ico", "KeyScreenshot is running, double click to exit", on_quit=quit_app(main_app))
+    sysTrayIcon.start()
+
     root.mainloop()
